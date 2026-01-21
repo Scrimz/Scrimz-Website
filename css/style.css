@@ -58,16 +58,27 @@ a { color: var(--cyan); text-decoration: none; }
 
 @keyframes blink { 50% { opacity: 0; } }
 
-.profile { text-align: center; }
-.profile h1 { position: relative; font-family: 'Fira Code', monospace; color: var(--cyan); font-size: 2.5rem; }
-.profile h1:hover { animation: glitch 0.35s infinite; }
+.profile { 
+  text-align: center; 
+}
 
-@keyframes glitch {
-  0% { text-shadow: 2px 0 #00e5ff, -2px 0 #ff004c; }
-  20% { text-shadow: -2px 0 #00e5ff, 2px 0 #ff004c; }
-  40% { text-shadow: 2px 2px #00e5ff, -2px -2px #ff004c; }
-  60% { text-shadow: -1px 1px #00e5ff, 1px -1px #ff004c; }
-  100% { text-shadow: none; }
+.profile h1 { 
+  position: relative; 
+  font-family: 'Fira Code', monospace; 
+  color: var(--cyan); 
+  font-size: 2.5rem;
+  transition: all 0.4s ease;
+  opacity: 0.9;
+}
+
+.profile h1:hover { 
+  opacity: 1;
+  color: #ffffff;  
+  filter: drop-shadow(0 0 8px var(--cyan)) 
+          drop-shadow(0 0 20px rgba(0, 229, 255, 0.3));
+  
+  transform: translateY(-3px);
+  letter-spacing: 2px;
 }
 
 .profile img {
@@ -345,3 +356,4 @@ a, button, .skill, .org-tile, .cert-trigger, .writeup-card, .profile-card, * {
     page-break-inside: avoid;
   }
 }
+
