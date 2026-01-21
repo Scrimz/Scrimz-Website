@@ -13,6 +13,10 @@ function typeText(el, text, speed = 100, callback) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('image-overlay');
+  const hoverImg = document.getElementById('org-hover-img');
+  const closeBtn = document.getElementById('close-btn');
+
   const cmd1 = document.getElementById('cmd1');
   const out1 = document.getElementById('out1');
   const cmd2 = document.getElementById('cmd2');
@@ -39,8 +43,8 @@ window.addEventListener('DOMContentLoaded', () => {
         hoverImg.src = imgSrc;
         overlay.classList.add('show');
         document.body.style.overflow = 'hidden';
-        }, 100);
-      });
+      }, 100);
+    });
   }
   
   const sections = document.querySelectorAll('section');
@@ -63,16 +67,12 @@ window.addEventListener('DOMContentLoaded', () => {
   sections.forEach(section => observer.observe(section));
 
   const orgTiles = document.querySelectorAll('.org-tile');
-  const overlay = document.getElementById('image-overlay');
-  const hoverImg = document.getElementById('org-hover-img');
-  const closeBtn = document.getElementById('close-btn');
 
   orgTiles.forEach(tile => {
     const imgSrc = tile.getAttribute('data-img');
 
     tile.addEventListener('mouseenter', () => {
       if (overlay.classList.contains('show')) return;
-
       setTimeout(() => {
         if (tile.matches(':hover')) {
           hoverImg.src = imgSrc;
@@ -104,5 +104,4 @@ window.addEventListener('DOMContentLoaded', () => {
       closeOverlay();
     }
   });
-
 });
