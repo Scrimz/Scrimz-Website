@@ -33,13 +33,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const certTrigger = document.querySelector('.cert-trigger');
   if (certTrigger) {
-    certTrigger.addEventListener('click', () => {
-      const imgSrc = certTrigger.getAttribute('data-img');
-      hoverImg.src = imgSrc;
-      overlay.classList.add('show');
-      document.body.style.overflow = 'hidden';
+    certTrigger.addEventListener('mouseenter', () => {
+      setTimeout(() => {
+        const imgSrc = certTrigger.getAttribute('data-img');
+        hoverImg.src = imgSrc;
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        }, 100);
       });
   }
+  
   const sections = document.querySelectorAll('section');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -101,4 +104,5 @@ window.addEventListener('DOMContentLoaded', () => {
       closeOverlay();
     }
   });
+
 });
