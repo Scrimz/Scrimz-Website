@@ -72,13 +72,32 @@ a { color: var(--cyan); text-decoration: none; }
 }
 
 .profile h1:hover { 
-  opacity: 1;
-  color: #ffffff;  
-  filter: drop-shadow(0 0 8px var(--cyan)) 
-          drop-shadow(0 0 20px rgba(0, 229, 255, 0.3));
-  
-  transform: translateY(-3px);
-  letter-spacing: 2px;
+  animation: flash-back 1.2s ease-in-out;
+}
+
+@keyframes flash-back {
+  0% {
+    transform: translateY(0);
+    letter-spacing: normal;
+    color: var(--cyan);
+    opacity: 0.9;
+    filter: none;
+  }
+  30%, 70% {
+    transform: translateY(-3px);
+    letter-spacing: 2px;
+    color: #ffffff;
+    opacity: 1;
+    filter: drop-shadow(0 0 8px var(--cyan)) 
+            drop-shadow(0 0 20px rgba(0, 229, 255, 0.3));
+  }
+  100% {
+    transform: translateY(0);
+    letter-spacing: normal;
+    color: var(--cyan);
+    opacity: 0.9;
+    filter: none;
+  }
 }
 
 .profile img {
@@ -237,9 +256,24 @@ section h3 {
 }
 
 .achievements-header { font-weight: 700; color: var(--cyan); margin: 20px 0 10px 0; font-size: 1rem; }
-.achievements { padding-left: 20px; list-style: none; }
-.achievements li { margin-bottom: 10px; font-size: 0.95rem; position: relative; }
-.achievements li::before { content: '•'; position: absolute; left: 0; color: var(--cyan); }
+.achievements {
+  list-style: none;
+  padding-left: 0;
+}
+
+.achievements li {
+  display: flex;
+  gap: 10px;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.achievements li::before {
+  content: '•';
+  color: var(--cyan);
+  flex-shrink: 0;
+}
 
 .volunteer-bullets { list-style: none; padding-left: 0; margin-top: 15px; }
 .volunteer-bullets li { margin-bottom: 10px; padding-left: 25px; position: relative; }
@@ -356,4 +390,3 @@ a, button, .skill, .org-tile, .cert-trigger, .writeup-card, .profile-card, * {
     page-break-inside: avoid;
   }
 }
-
