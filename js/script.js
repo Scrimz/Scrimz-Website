@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   typeText(cmd1, 'whoami', 120, () => {
     typeText(out1, 'scrimz', 120, () => {
-      typeText(cmd2, 'uptime --pretty', 120, () => {
+      typeText(cmd2, 'uptime', 120, () => {
         typeText(out2, 'up 6 years', 120, () => {
           if (cursor) cursor.style.display = 'inline-block'; 
         });
@@ -105,3 +105,4 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
