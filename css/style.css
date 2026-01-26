@@ -21,6 +21,34 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+  border-left: 1px solid rgba(0, 229, 255, 0.1); 
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.3);
+  border-radius: 5px;
+  border: 1px solid var(--cyan);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan);
+  box-shadow: 0 0 20px var(--cyan), 
+              0 0 40px rgba(0, 229, 255, 0.6);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyan) #020617;
+}
+
 html {
   background-color: #020617; 
   scrollbar-gutter: stable;
@@ -407,3 +435,4 @@ a, button, .skill, .org-tile, .cert-trigger, .writeup-card, .profile-card, * {
     page-break-inside: avoid;
   }
 }
+
