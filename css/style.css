@@ -217,11 +217,6 @@ section h3 {
   animation: blink 0.8s infinite;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
 #image-overlay {
   position: fixed;
   top: 0;
@@ -400,8 +395,7 @@ a, button, .skill, .org-tile, .cert-trigger, .writeup-card, .profile-card, * {
     page-break-inside: auto !important;
     break-inside: auto !important;
   }
-
-}
+  
   section {
     opacity: 1 !important;
     transform: none !important;
