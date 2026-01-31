@@ -152,6 +152,65 @@ a { color: var(--cyan); text-decoration: none; }
   }
 }
 
+.info .btn-container {
+  margin-top: 20px;
+}
+
+.neon-button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 24px;
+  color: var(--cyan); 
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid rgba(0, 229, 255, 0.3); 
+  overflow: hidden;
+  transition: all 0.4s ease;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+}
+
+.neon-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.4), transparent);
+  transition: 0.5s;
+}
+
+.neon-button:hover::before {
+  left: 100%;
+}
+
+.neon-button:hover {
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.6), 
+              inset 0 0 15px rgba(0, 229, 255, 0.2);
+  text-shadow: 0 0 10px var(--cyan), 0 0 20px var(--cyan);
+  animation: pulse-cyan 1.5s infinite alternate;
+}
+
+@keyframes pulse-cyan {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.8), inset 0 0 10px rgba(0, 229, 255, 0.4);
+  }
+}
+
+.neon-button:active {
+  transform: scale(0.95);
+  filter: brightness(0.8);
+}
+
 .profile img {
   width: 190px;
   height: 190px;
@@ -191,6 +250,11 @@ section h3 {
   border: 1px solid rgba(0, 229, 255, 0.15);
 }
 
+.org-tile, .cert-trigger {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
 .skills, .courses { display: flex; flex-wrap: wrap; gap: 12px; }
 .skill, .course-card {
   background: var(--glass);
@@ -224,9 +288,9 @@ section h3 {
   color: #00ffff; 
   transition: all 0.3s ease;
   display: inline-block;
-  padding: 2px 8px;
+  padding: 0;
   border-radius: 4px;
-  font-family: 'Fira Code', monospace;
+  font-family: inherit;
   position: relative;
 }
 
@@ -435,5 +499,3 @@ footer {
     page-break-inside: avoid;
   }
 }
-
-
