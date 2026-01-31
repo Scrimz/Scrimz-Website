@@ -37,13 +37,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const certTrigger = document.querySelector('.cert-trigger');
   if (certTrigger) {
+    const imgSrc = certTrigger.getAttribute('data-img');
     certTrigger.addEventListener('mouseenter', () => {
       setTimeout(() => {
-        const imgSrc = certTrigger.getAttribute('data-img');
         hoverImg.src = imgSrc;
         overlay.classList.add('show');
         document.body.style.overflow = 'hidden';
       }, 100);
+    });
+    
+    certTrigger.addEventListener('click', () => {
+      hoverImg.src = imgSrc;
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
     });
   }
   
@@ -81,6 +87,31 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       }, 250); 
     });
+
+    tile.addEventListener('click', () => {
+      tile.style.transform = 'rotateY(180deg) scale(1.15)';
+      tile.style.webkitTransform = 'rotateY(180deg) scale(1.15)';
+      const innerText = tile.querySelector('span') || tile;
+      if (innerText !== tile) {
+        innerText.style.transform = 'rotateY(180deg)';
+        innerText.style.webkitTransform = 'rotateY(180deg)';
+      }
+
+      setTimeout(() => {
+        hoverImg.src = imgSrc;
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        setTimeout(() => {
+            tile.style.transform = '';
+            tile.style.webkitTransform = '';
+            if (innerText !== tile) {
+              innerText.style.transform = '';
+              innerText.style.webkitTransform = '';
+            }
+        }, 500);
+      }, 400); 
+    });
   });
 
   const closeOverlay = () => {
@@ -105,4 +136,3 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
