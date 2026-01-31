@@ -73,7 +73,7 @@ a { color: var(--cyan); text-decoration: none; }
 .container {
   max-width: 1000px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 40px 20px 0 20px;
 }
 
 .hero {
@@ -339,7 +339,13 @@ section h3 {
 .writeup-title, .profile-title { font-weight: 700; font-size: 1rem; margin-bottom: 5px; }
 .writeup-link, .profile-link { font-size: 0.85rem; color: var(--muted); }
 
-footer { text-align: center; margin-top: 60px; font-size: 0.9rem; color: #6f7a85; padding-bottom: 40px; }
+footer { 
+  text-align: center; 
+  margin-top: 0;
+  font-size: 0.9rem; 
+  color: #6f7a85; 
+  padding: 60px 0 40px 0;
+}
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
