@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0f172a">
-    <title>Christos Dimitropoulos | Penetration Tester</title>
+    <title>Christos Dimitropoulos</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
@@ -14,6 +14,11 @@
 </head>
 <body>
     <div class="container">
+        <nav class="top-nav">
+            <a href="#" class="nav-link active" data-page="home">Home</a>
+            <a href="articles.html" class="nav-link" data-page="articles">Articles</a>
+        </nav>
+
         <div class="hero">
             <div class="terminal">
                 <p><span class="username">scrimz@profile</span>:~$ <span id="cmd1" class="command"></span></p>
@@ -22,9 +27,11 @@
                 <p id="out2" class="output"><span class="cursor" id="cursor"></span></p>
             </div>
             <div class="profile">
-                <img src="images/profile/profile.jpeg" alt="Christos Dimitropoulos" class="profile-pic">
+                <div class="profile-pic-wrap">
+                    <img src="images/profile/profile.png" alt="Christos Dimitropoulos" class="profile-pic">
+                </div>
                 <h1>Christos Dimitropoulos</h1>
-                <h2>Penetration Tester</h2>
+                <h2>Application Penetration Tester</h2>
                 <div class="info">
                     Thessaloniki, Greece<br>
                     <div class="btn-container visible">
@@ -33,29 +40,31 @@
                 </div>
             </div>
         </div>
+
         <section class="summary">
             <h3>Summary</h3>
-            <p>Started exploring cybersecurity at age 12 and evolved into a skilled penetration tester with 6 years of hands-on experience. Successfully reported and responsibly disclosed vulnerabilities to 35+ international organizations and companies, earning multiple Hall of Fame listings, formal letters of appreciation, and bug bounty rewards.</p>
+            <p>Started exploring ethical hacking at the age of 12 and evolved into a skilled, application penetration tester with 6 years of hands-on experience. Successfully identified and responsibly disclosed vulnerabilities to 35+ international organizations and companies. Currently working at Netcompany.</p>
         </section>
+
         <section>
             <h3>Skills</h3>
             <div class="skills">
                 <div class="skill">Web Application Penetration Testing</div>
+                <div class="skill">API Penetration Testing</div>
                 <div class="skill">Mobile Application Penetration Testing</div>
-                <div class="skill">Network Penetration Testing</div>
                 <div class="skill">Social Engineering</div>
-                <div class="skill">Exploitation</div>
-                <div class="skill">Post-Exploitation</div>
             </div>
         </section>
+
         <section class="experience">
             <h3>Professional Experience</h3>
             <div class="experience-item">
                 <div class="exp-header">
-                    <h4>Netcompany</h4>
-                    <span>Present</span>
+                    <h4>Netcompany - Penetration Tester</h4>
+                    <span>2026 - Present</span>
                 </div>
-                <p>Currently working at Netcompany as a Penetration Tester. My role involves conducting both internal and external security testing, combined with comprehensive vulnerability assessments.</p>
+                <p>Conducting penetration testing of web applications, APIs, and mobile applications to identify and assess security vulnerabilities.
+</p>
             </div>
             <div class="experience-item">
                 <div class="exp-header">
@@ -93,15 +102,22 @@
                 </ul>
             </div>
         </section>
+
         <div id="image-overlay">
             <span id="close-btn">&times;</span>
-            <img id="org-hover-img" src="" alt="Letter of Appreciation">
+            <div id="overlay-content">
+                <div id="overlay-title"></div>
+                <div id="overlay-description"></div>
+                <img id="org-hover-img" src="" alt="Certificate / Recognition Preview">
+                <a id="overlay-link" href="#" target="_blank" rel="noopener noreferrer">Verify Credential</a>
+            </div>
         </div>
+
         <section>
-            <h3>Volunteer Experience</h3>
+            <h3>Community Contributions</h3>
             <div class="experience-item">
                 <div class="exp-header">
-                    <h4>Phishing Analysis & Takedown</h4>
+                    <h4>Phishing Analysis &amp; Takedown</h4>
                     <span>2023 – 2024</span>
                 </div>
                 <ul class="volunteer-bullets">
@@ -111,19 +127,7 @@
                 </ul>
             </div>
         </section>
-        <section>
-            <h3>Publications</h3>
-            <div class="writeups">
-                <a class="writeup-card" href="https://medium.com/@christosdimitropouloss/how-a-simple-business-logic-flaw-caused-an-account-lockout-dos-c6b66bd2e3d0" target="_blank" rel="noopener noreferrer">
-                    <div class="writeup-title">How a Simple Business Logic Flaw Caused an Account Lockout DoS</div>
-                    <div class="writeup-link">medium.com</div>
-                </a>
-                <a class="writeup-card" href="https://medium.com/@christosdimitropouloss/handle-with-care-a-package-phishing-story-8ef82233d4dc" target="_blank" rel="noopener noreferrer">
-                    <div class="writeup-title">📦 Handle With Care: A Package Phishing Story</div>
-                    <div class="writeup-link">medium.com</div>
-                </a>
-            </div>
-        </section>
+
         <section>
             <h3>Education</h3>
             <div class="education-item">
@@ -131,7 +135,7 @@
                     <h4>International Hellenic University</h4>
                     <span>2025 - 2029</span>
                 </div>
-                <p>Organization Management, Marketing & Tourism</p>
+                <p>Organization Management, Marketing &amp; Tourism</p>
             </div>
             <div class="education-item">
                 <div class="exp-header">
@@ -140,14 +144,23 @@
                 </div>
             </div>
         </section>
+
         <section>
-            <h3>Courses</h3>
+            <h3>Certifications &amp; Courses</h3>
             <div class="courses">
-                <a class="course-card" href="https://www.udemy.com/certificate/UC-7069ea40-2d10-4234-83ca-aa6f3312c143/" target="_blank" rel="noopener noreferrer">
+                <div class="course-card" 
+                     data-img="images/Certs-Courses/PWPPCert.jpg" 
+                     data-link="https://certified.tcm-sec.com/a220c763-ef35-400c-9eee-2eac4deaaee7">
+                    Practical Web Pentest Professional - TCM
+                </div>
+                <div class="course-card" 
+                     data-img="images/Certs-Courses/ADUdemy.jpg" 
+                     data-link="https://www.udemy.com/certificate/UC-7069ea40-2d10-4234-83ca-aa6f3312c143/">
                     Advanced Windows Active Directory Penetration Testing - Udemy
-                </a>
+                </div>
             </div>
         </section>
+
         <section>
             <h3>Languages</h3>
             <div class="language">
@@ -156,21 +169,22 @@
             </div>
             <div class="language">
                 <div class="language-name">
-                    <span class="cert-trigger" data-img="images/education/michigan.jpg">English - C2</span>
+                    <span class="cert-trigger" 
+                          data-img="images/education/michigan.jpg">English - C2</span>
                 </div>
                 <div class="bar-bg"><div class="bar-fill"></div></div>
             </div>
         </section>
+
         <section>
             <h3>Find Me Online</h3>
             <div class="profiles">
-                <a class="profile-card" href="https://www.linkedin.com/in/chris-dimitropoulos/" target="_blank" rel="noopener noreferrer">
+                <a class="profile-card" href="https://www.linkedin.com/in/chris-dimitropoulos/" target="_blank" rel="noopener noreferrer" style="display: flex; justify-content: center; align-items: center; text-align: center;">
                     <div class="profile-title">LinkedIn</div>
-                    <div class="profile-link">linkedin.com/in/chris-dimitropoulos</div>
                 </a>
             </div>
         </section>
-        <div class="custom-cursor"></div>
+
         <footer>© 2026 Christos Dimitropoulos</footer>
     </div>
     <script src="js/script.js" defer></script>

@@ -1,0 +1,137 @@
+/* Category Filter Buttons */
+.blog-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    background: var(--glass);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    color: var(--muted);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    color: #000;
+    background: var(--cyan);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+    border-color: var(--cyan);
+}
+
+code.inline-code {
+    display: inline;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.88em;
+    color: inherit; /* Uses standard text color instead of cyan */
+    background: rgba(255, 255, 255, 0.05); /* Subtle neutral dark overlay */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Neutral border */
+    border-radius: 4px;
+    padding: 1px 6px;
+    white-space: nowrap;
+}
+
+/* Blog Feed & Cards */
+.blog-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.blog-card {
+    background: var(--panel);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    border-radius: 14px;
+    padding: 25px;
+    transition: all 0.3s ease;
+}
+
+.blog-card:hover {
+    border-color: var(--cyan);
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+}
+
+.blog-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+}
+
+.blog-date {
+    color: var(--muted);
+}
+
+.blog-tag {
+    font-family: 'Fira Code', monospace;
+    color: var(--cyan);
+    background: rgba(0, 229, 255, 0.1);
+    padding: 3px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 229, 255, 0.2);
+}
+
+.blog-title {
+    font-size: 1.35rem;
+    margin-bottom: 10px;
+}
+
+.blog-title a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.blog-title a:hover {
+    color: var(--cyan);
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.blog-excerpt {
+    color: #b0bac5;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.blog-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.read-more {
+    font-family: 'Fira Code', monospace;
+    font-weight: 600;
+    color: var(--cyan);
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.read-more:hover {
+    transform: translateX(5px);
+}
+
+.read-time {
+    color: var(--muted);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .blog-title {
+        font-size: 1.15rem;
+    }
+}

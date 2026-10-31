@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <title>Christos Dimitropoulos | Blob Around and Find Out </title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../images/favicon/site.webmanifest">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/articles.css">
+
+    <style>
+        .top-nav {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        .back-link {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-link .arrow {
+            color: var(--cyan);
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover .arrow {
+            transform: translateX(-4px);
+        }
+
+        .container.writeup-container {
+            max-width: min(1300px, 92vw);
+            margin: 0 auto;
+            padding: 30px 20px 0 20px;
+        }
+
+        .blog-card.article-card {
+            padding: 40px 50px;
+            width: 100%;
+        }
+
+        .blog-card.article-card:hover {
+            transform: none !important;
+            box-shadow: none !important;
+            filter: none !important;
+            background: var(--panel) !important;
+            border-color: rgba(0, 229, 255, 0.15) !important;
+        }
+
+        .blog-card.article-card:hover::before,
+        .blog-card.article-card:hover::after {
+            transform: none !important;
+            opacity: 1 !important;
+            filter: none !important;
+            box-shadow: none !important;
+        }
+
+        .article-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+            padding-bottom: 20px;
+        }
+
+        .article-title {
+            font-size: 2.2rem;
+            line-height: 1.3;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .article-body {
+            color: #b0bac5;
+            font-size: 1.05rem;
+            line-height: 1.85;
+        }
+
+        .article-body p {
+            margin-bottom: 24px;
+        }
+
+        .article-body h2 {
+            color: #ffffff;
+            margin: 40px 0 16px;
+            font-size: 1.55rem;
+            border-left: 4px solid var(--cyan);
+            padding-left: 12px;
+        }
+
+        .article-body ul {
+            margin: 0 0 24px 20px;
+            padding-left: 10px;
+        }
+
+        .article-body li {
+            margin-bottom: 10px;
+        }
+
+        .article-body a {
+            color: var(--cyan);
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(0, 229, 255, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .article-body a:hover {
+            border-bottom-style: solid;
+            text-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
+        }
+
+        .article-body blockquote {
+            background: rgba(0, 229, 255, 0.05);
+            border-left: 4px solid var(--cyan);
+            margin: 28px 0;
+            padding: 18px 24px;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: #d1d5db;
+        }
+
+        .article-body em {
+            color: #94a3b8;
+        }
+
+        .code-block-container {
+            margin: 24px 0;
+            background: #090d16;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .code-block-container:hover {
+            border-color: var(--cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+        }
+
+        .code-block-container pre {
+            margin: 0;
+            padding: 16px 20px;
+            overflow-x: auto;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            color: #38bdf8;
+            line-height: 1.6;
+        }
+
+        .article-img-container {
+            margin: 24px 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .article-img-container:hover {
+            transform: translateY(-3px);
+            filter: none;
+        }
+
+        .article-img-container:hover .article-img {
+            border-color: var(--cyan);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.15);
+        }
+
+        .article-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 520px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        .img-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            margin: 30px 0;
+        }
+
+        .img-grid .article-img-container {
+            margin: 0;
+            width: 100%;
+        }
+
+        .article-video-container {
+            margin: 35px 0;
+            border: 1px solid rgba(0, 229, 255, 0.25);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.08);
+        }
+
+        .article-video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container.writeup-container {
+                width: 100%;
+                max-width: 100%;
+                padding: 24px 14px 0;
+            }
+
+            .top-nav {
+                justify-content: space-between;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+
+            .back-link {
+                position: static;
+                transform: none;
+            }
+
+            .blog-card.article-card {
+                padding: 30px 20px;
+            }
+
+            .article-header {
+                margin-bottom: 35px;
+                padding-bottom: 24px;
+            }
+
+            .article-title {
+                font-size: 1.65rem;
+                line-height: 1.3;
+                margin-top: 12px;
+            }
+
+            .article-body {
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+
+            .article-body p {
+                margin-bottom: 28px;
+            }
+
+            .article-body h2 {
+                font-size: 1.4rem;
+                line-height: 1.35;
+                margin: 48px 0 20px;
+                padding-left: 10px;
+            }
+
+            .article-body ul {
+                margin-bottom: 28px;
+                padding-left: 18px;
+            }
+
+            .article-body li {
+                margin-bottom: 14px;
+            }
+
+            .article-body blockquote {
+                margin: 32px 0;
+                padding: 18px 18px;
+            }
+
+            .code-block-container {
+                margin: 30px 0;
+                border-radius: 8px;
+            }
+
+            .code-block-container pre {
+                padding: 16px;
+                font-size: 0.82rem;
+                line-height: 1.65;
+            }
+
+            .article-img-container {
+                margin: 30px 0;
+            }
+
+            .img-grid {
+                gap: 30px;
+                margin: 36px 0;
+            }
+
+            .article-img {
+                max-height: 380px;
+            }
+
+            .article-video-container {
+                margin: 40px 0;
+            }
+
+            footer {
+                margin-top: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container writeup-container">
+        <nav class="top-nav">
+            <a href="../articles.html" class="nav-link back-link">
+                <span class="arrow">&larr;</span> Articles
+            </a>
+
+            <a href="../index.html" class="nav-link" data-page="home">
+                Home
+            </a>
+        </nav>
+
+        <main>
+            <article class="blog-card article-card">
+                <header class="article-header">
+                    <div class="article-meta">
+                        <span class="blog-date">October 31, 2026</span>
+                        <span class="blog-tag">Web Security</span>
+                    </div>
+
+                    <h1 class="article-title">
+                        Blob Around and Find Out
+                    </h1>
+                </header>
+
+                <div class="article-body">
+                    <h2>TL;DR</h2>
+
+                    <p>
+                        If you encounter a JWT-based application with a Stored Self-XSS that appears unexploitable, don’t ignore it. Check if the website lacks proper iframe protection and whether a Login CSRF gadget is available. If so, you may be able to escalate the Self-XSS into a cross-session attack, effectively turning it into a standard XSS. The key primitive is the browser's special handling of <code class="inline-code">blob:</code> URLs during top-level navigation.
+                    </p>
+
+                    <h2>Introduction</h2>
+
+                    <p>
+                        When an application is vulnerable to Stored Self-XSS and uses cookie-based authentication, there are several ways to escalate the “self” factor. However, when it comes to JWT-based implementations, which are widely used in single-page applications (SPAs), fewer documented techniques demonstrate how these vulnerabilities can be escalated. 
+                    </p>
+                    
+                    <p>
+                    In this article, I'll discuss one such technique that has proven useful to me on several occasions during web engagements, with the aim of raising awareness within the security community.
+                    </p>
+
+                    <h2>How it Works</h2>
+
+                    <p>
+                        <em>
+                            * For Demonstration purposes, I built an SPA environment using Claude, which I'll refer to as <code class="inline-code">target.com</code>. The application stores its JWT in localStorage, a practice that is surprisingly common in real-world environments. *
+                        </em>
+                    </p>
+
+                    <p>
+                        Our environment <code class="inline-code">target.com</code> is vulnerable to Stored Self-XSS at the <code class="inline-code">/diary</code> endpoint. However, this page is private to each user and, thus, cannot be shared with others. Furthermore, normal CSRF attacks don't provide a viable delivery mechanism for exploiting victims’ sessions, due to the Authorization header required for authenticated requests.
+                    </p>
+
+                    <p>
+                        Ideally, the best-case scenario would be to execute the XSS from the attacker’s account while affecting the victim’s session. This is indeed possible, provided certain prerequisites are met. To achieve this, we first need to embed <code class="inline-code">target.com</code> in an iframe on an attacker-controlled page: <code class="inline-code">attacker.com</code>.
+                    </p>
+
+                    <p>
+                        Because <code class="inline-code">localStorage</code>, like other forms of client-side storage, is partitioned by the top-level site, <code class="inline-code">target.com</code> will effectively be unauthenticated when embedded in an iframe on <code class="inline-code">attacker.com</code>, while the victim’s top-level session at <code class="inline-code">target.com</code> remains intact. It’s also worth knowing about the <code class="inline-code">credentialless</code> attribute, which can be useful in hybrid JWT implementations that rely on cookies.
+                    </p>
+
+                    <p>
+                        The next step is to log into the attacker’s account within the iframe. For this, we need a Login CSRF gadget. If none is available, a clickjacking attack might be a viable alternative, tricking the victim into unknowingly logging into the attacker’s account.
+                    </p>
+
+                    <p>
+                        Inside the attacker's account, we use our JavaScript execution on <code class="inline-code">attacker.com</code> to redirect the iframe to the <code class="inline-code">/diary</code> endpoint, triggering the Stored Self-XSS. The XSS then creates a <code class="inline-code">blob:</code> URL containing an HTML document with malicious JavaScript and navigates the top-level context to it. The created <code class="inline-code">blob:</code> URL inherits the origin of the environment that created it. 
+                    </p>
+                    <blockquote>
+                    "If url’s blob URL entry is non-null, then return url’s blob URL entry’s environment’s origin."
+                    <br>
+                    - <a href="https://url.spec.whatwg.org/#concept-url-origin" target="_blank" rel="noopener noreferrer">
+                    WHATWG URL Standard
+                    </a>
+                    </blockquote>
+                    
+                    <p>
+                        
+                        As a result, the JavaScript executes in the top-level context of <code class="inline-code">target.com</code>, where the victim’s authenticated session exists.
+                    
+                    </p>
+                    <blockquote>
+                        “Blob URLs can only be fetched from environments where the storage key matches that of the environment where the blob URL was created. Blob URL navigations are not subject to this restriction.”
+                        <br>
+                        — <a href="https://w3c.github.io/FileAPI/#partitioningOfBlobUrls" target="_blank" rel="noopener noreferrer">
+                            W3C File API Spec
+                        </a>
+                    </blockquote>
+
+                    <h2>Step by Step</h2>
+
+                    <ul>
+                        <li>
+                            Verify that the website lacks framing defenses.
+
+                            <div class="code-block-container">
+                                <pre><code>&lt;iframe src="https://target.com"&gt;&lt;/iframe&gt;</code></pre>
+                            </div>
+                             <figure class="article-img-container">
+                                <img
+                                    src="../images/articles/Blob-Around-and-Find-Out/Picture1.png"
+                                    alt="Framing test without defenses"
+                                    class="article-img"
+                                >
+                            </figure>                           
+                        </li>
+
+                        <li>
+                            Locate a Login CSRF gadget.
+
+                            <div class="code-block-container">
+                                <pre><code>https://target.com/home?token=magic_link_22e8692340ffde31 // Login CSRF</code></pre>
+                            </div>
+                            <figure class="article-img-container">
+                                <img
+                                    src="../images/articles/Blob-Around-and-Find-Out/Picture2.png"
+                                    alt="Framing test without defenses"
+                                    class="article-img"
+                                >
+                            </figure>
+                        </li>
+
+                        <li>
+                            Prepare the Stored Self-XSS to generate a <code class="inline-code">blob:</code> URL containing the final weaponized payload and navigate the top-level browsing context to the resulting URL.
+
+                            <div class="code-block-container">
+                                <pre><code>&lt;script&gt;
+const htmlContent = '&lt;script&gt;alert(localStorage.token)&lt;\/script&gt;';
+const blob = new Blob([htmlContent], { type: 'text/html' });
+const blobUrl = URL.createObjectURL(blob);
+top.location = blobUrl;
+&lt;/script&gt;</code></pre>
+                            </div>
+                        </li>
+
+                        <li>
+                            Host an attacker-controlled page with an iframe pointing to the Login CSRF gadget, and once authentication is complete, navigate the iframe to the page containing the Stored Self-XSS.
+
+                            <div class="code-block-container">
+                                <pre><code>&lt;iframe 
+  sandbox="allow-scripts allow-same-origin allow-top-navigation" 
+  src="https://target.com/home?token=magic_link_22e8692340ffde31" 
+  onload="if (!this.d) { this.d = 1; this.src = 'https://target.com/diary'; }"&gt;
+&lt;/iframe&gt;</code></pre>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <blockquote style="margin-top: 0;">
+                        <em>
+                            Using <code class="inline-code">sandbox</code> attribute with <code class="inline-code">allow-top-navigation</code> is essential because, without it, browsers will generally block the iframe from programmatically navigating the top-level browsing context to the created <code class="inline-code">blob:</code> URL, requiring user interaction.
+                        </em>
+                    </blockquote>
+
+                    <p>
+                        On the victim's side:
+                    </p>
+
+                    <ul>
+                        <li>They must already be authenticated within the target application.</li>
+                        <li>Visit an attacker-controlled page.</li>
+                    </ul>
+
+                    <p>
+                        Finally, it looks like the following:
+                    </p>
+
+                    <div class="article-video-container">
+                        <video controls>
+                            <source
+                            src="../images/articles/Blob-Around-and-Find-Out/Final.mp4"
+                            type="video/mp4"
+                            >
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                    <h2>Further Attack Surface</h2>
+
+                    <p>
+                        At this point, you may be asking: <em>Cool, but how common are websites that allow themselves to be iframed in 2026?</em>
+                    </p>
+
+                    <p>
+                        The truth is that it's becoming less common. Sure, many websites still allow it, whether due to misconfiguration or a deliberate choice to allow their content to be embedded on third-party sources, but the vast majority will not.
+                    </p>
+
+                    <p>
+                        One thing worth considering, though, is that framing can be selectively allowed for specific pages through CSP rules. If you didn’t know, these rules override the <code class="inline-code">X-Frame-Options</code> header.
+                    </p>
+
+                    <p>
+                        I've come across many cases where a website allowed itself to be iframed from an untrusted external source, or from a <b>highly untrusted subdomain</b>:
+                    </p>
+
+                    <div class="code-block-container">
+                        <pre><code>Content-Security-Policy: frame-ancestors https://fileuploads.target.com;</code></pre>
+                    </div>
+
+                    <p>
+                        even when the <code class="inline-code">X-Frame-Options</code> header was explicitly set to <code class="inline-code">DENY</code>.
+                    </p>
+
+                    <div class="code-block-container">
+                        <pre><code>X-Frame-Options: DENY</code></pre>
+                    </div>
+
+                    <p>
+                        This opens up a new possibility: if you have a Stored Self-XSS on the target and find a way to execute JavaScript on one of its subdomains or on a vulnerable external website, you may be able to use it to satisfy the frame-ancestors policy and escalate the attack.
+                    </p>
+
+                    <figure class="article-img-container">
+                        <img
+                            src="https://www.top10films.co.uk/img/youre-gonna-need-a-bigger-boat-gif.gif"
+                            alt="You're gonna need a bigger boat"
+                            class="article-img"
+                        >
+                    </figure>
+
+                    <h2>Closing Up</h2>
+
+                    <p>
+                        While researching after writing this article, I came across two similar cases of using <code class="inline-code">blob:</code> behavior to escalate XSS:
+                    </p>
+                    <ul>
+                        <li>
+                            One by Ron Masas at Imperva, from his writeup on ChatGPT vulnerabilities:
+                            <a href="https://www.imperva.com/blog/xss-marks-the-spot-digging-up-vulnerabilities-in-chatgpt/" target="_blank" rel="noopener noreferrer">
+                                XSS Marks the Spot: Digging Up Vulnerabilities in ChatGPT
+                            </a>
+                        </li>
+                        <li>
+                            One by Bawolff, from LA CTF in 2024:
+                            <a href="https://bawolff.blogspot.com/2024/02/la-ctf-write-up-ctf-wiki.html" target="_blank" rel="noopener noreferrer">
+                                LA CTF write up: ctf-wiki
+                            </a>
+                        </li>
+                    </ul>
+                    <p>
+                        Both have used it in great ways, so they're definitely worth a read!
+                    </p>
+                    <p>
+                        That’s all! If you have any thoughts about the technique discussed or happen to use it similarly in a real-world case, don’t hesitate to reach out. I’d love to hear about it!
+                    </p>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            © 2026 Christos Dimitropoulos
+        </footer>
+    </div>
+</body>
+</html>
